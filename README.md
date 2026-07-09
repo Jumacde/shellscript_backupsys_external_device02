@@ -1,0 +1,1 @@
+# shellscript_backupsys_external_device02
