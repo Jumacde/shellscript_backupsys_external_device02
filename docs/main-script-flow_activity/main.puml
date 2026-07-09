@@ -1,0 +1,11 @@
+@startuml
+start
+: run main.sh;
+
+!include log-manager_process.puml
+!include device-manager_process.puml
+
+: start backup;
+: show log_message(SUCCESS, "Backup finished");
+stop
+@enduml

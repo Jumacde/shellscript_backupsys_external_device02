@@ -1,0 +1,18 @@
+@startuml
+class "main.sh" as main {
+	+ main()
+}
+
+class "device_manager.sh" as device {
+	+ check_mount()
+	+ start_backup()
+}
+
+class "log_manager.sh" as log {
+	+ get_logdir()
+	+ log_message()
+}
+main ..> log: << use >>
+main ..> device : << use >>
+device ..> log: << use >>
+@enduml

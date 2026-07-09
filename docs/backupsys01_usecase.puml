@@ -1,0 +1,17 @@
+@startuml
+skinparam packageStyle rectangle
+left to right direction
+actor "User" as user
+actor "external device" as device
+
+rectangle "backupsys02(main.sh)" {
+        usecase "execute backupsystem" as main
+        usecase "record logs" as log
+	usecase "check mount status" as mount
+}
+user --> main
+main ..> mount: << include >>
+main --> device: << write data >>
+main ..> log: << include >>
+@enduml
+

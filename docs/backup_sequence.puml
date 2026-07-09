@@ -1,0 +1,33 @@
+@startuml
+autonumber
+actor "User" as user
+participant "main.sh" as main
+participant "log_manager.sh" as log
+participant "device_manager.sh" as device
+
+user -> main : Execute script (sudo ./main.sh\nsudo ENV=prod./main.sh)
+activate main
+
+main -> log : get_logdir()
+activate log
+
+log --> main: return log_dir path
+deactivate log
+
+main -> device : check_mount()
+activate device
+alt Device is not mounted
+	device --> log : log_message(FAILD, "Not mounted")
+	device --> main : return error
+	main --> user : Show error and Exit
+else Device is mounted
+	device -> log : log_message(SUCCESS, "Backup finished")
+	device --> device : create backup_dir if not exits 
+	device --> log : log_message(SUCCESS, "Backup finished") 
+	device --> main : return success
+	deactivate device
+
+	main --> user : Show success message
+end
+deactivate main
+@enduml

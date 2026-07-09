@@ -1,0 +1,29 @@
+partition #PeachPuff  log_manager.sh {
+        : load log path for each command;
+        note right
+                test: "sudo ./main.sh"
+                prod: "sudo ENV=prod ./main.sh"
+        end note
+
+        if (exist .env file?) then (yes)
+                : export log path;
+        else (no)
+                : show error message;
+                : exit scripts(status1);
+                kill
+        endif
+
+        if ("ENV=prod") then (yes)
+                : log_dir = prod_log;
+        else (no)
+                : log_dir = test_log;
+        endif
+
+        if (exist already a log directory?) then (yes)
+                : pass;
+      else (no)
+                : create a log directory;
+        endif
+}
+
+

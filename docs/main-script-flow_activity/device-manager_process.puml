@@ -1,0 +1,16 @@
+partition #PeachPuff device_manager.sh {
+	: load check_mount() from device_manager.sh;
+	: start check mount status devices;
+	if (Are both devices not mounted?) then (yes)
+		:show log_message(FAILED, "Both devices not mounted");
+        	:Show error message and Exit;
+       		kill
+	else (no: at least one device is mounted)
+		if (Dose backup directory exist?) then (yes)
+			: pass;
+		else(no)
+			: create a buckup directory;
+		endif
+	: send data to each mounted backup_dir;
+	endif
+}

@@ -1,0 +1,21 @@
+@startuml
+package "Application_Layer" {
+	component [main.sh] as main
+	component [device_manager.sh] as device
+}
+
+package "Infrastructure_Layer" {
+	component [log_manager.sh] as log
+	file ".env" as env
+}
+database "Log_Files" {
+	file "test_backup01.log" as testlog
+	file "prod_backup01.log" as prodlog
+}
+main -down.> device : << use >>
+main -down.> log : << use >>
+device -down.> log : << use >>
+log -down.> env : << load path >>
+log -down.> testlog: << write >>
+log -down.> prodlog: << write >>
+@enduml
