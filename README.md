@@ -12,7 +12,7 @@ backup system to 2 externer devices by shellscriipt.
           if the device isn’t mounted show and record error message.
           if only a device is mounted start buck up to this device.
           if both device is mounted execute system to both device.
-      2. execute backup date.
+      2. execute backup data.
           if the directory for backup isn’t exist create this directory.
           send data to each mounted backup_dir.
           record the result of this system on log file.
