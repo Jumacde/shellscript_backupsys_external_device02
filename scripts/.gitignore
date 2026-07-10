@@ -1,4 +1,2 @@
 #hide .env
 .env
-#hide testlog
-buckupsys/external_device01/test_log/
